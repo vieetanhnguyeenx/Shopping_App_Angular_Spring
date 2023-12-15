@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "gulp-connect": "^5.7.0",
+    "livereload-js": "^4.0.2"
+  }
+}
