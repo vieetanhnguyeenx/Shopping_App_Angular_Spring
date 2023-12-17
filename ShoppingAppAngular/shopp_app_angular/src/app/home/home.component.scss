@@ -1,0 +1,40 @@
+.product-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-rating {
+    color: #ffd700;
+}
+
+.product-name {
+    color: black;
+}
+
+.product-description {
+    color: #adb5bd;
+}
+
+.product-warranty {
+    color: rgb(249, 120, 120);
+}
+
+.product-price {
+    color: red;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.search-input {
+    width: 700px;
+}
+
+.category-cbb {
+    width: 250px;
+}

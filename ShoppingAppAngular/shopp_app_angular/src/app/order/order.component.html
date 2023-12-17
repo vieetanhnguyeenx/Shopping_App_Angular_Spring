@@ -1,0 +1,111 @@
+<!-- Header-->
+<app-header></app-header>
+<div class="container px-4 px-lg-5 main">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Informations</h3>
+            <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Full Name</label>
+                  <input placeholder="Full Name" type="text" class="form-control" id="name">
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input placeholder="Email" type="text" class="form-control" id="email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input placeholder="Phone Number" type="text" class="form-control" id="phone">
+                </div>
+
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input placeholder="Address" type="text" class="form-control" id="phone">
+                </div>
+              </form>
+
+        </div>
+
+        <div class="col-md-6">
+            <h3>Order details</h3>
+            <div>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="text-start">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Sub Price</th>
+                        <th scope="col">Sub Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="row">
+                            <div class="product-info">
+                                <img src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
+                                            class="product-image" alt="Product Image">
+                                <span>Product name</span>
+                           </div>
+                            
+                        </td>
+                        <td>10</td>
+                        <td>$100</td>
+                        <td>$1000</td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                            <div class="product-info">
+                                <img src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
+                                            class="product-image" alt="Product Image">
+                                <span>Product name</span>
+                           </div>
+                            
+                        </td>
+                        <td>10</td>
+                        <td>$100</td>
+                        <td>$1000</td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                            <div class="product-info">
+                                <img src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
+                                            class="product-image" alt="Product Image">
+                                <span>Product name</span>
+                           </div>
+                            
+                        </td>
+                        <td>10</td>
+                        <td>$100</td>
+                        <td>$1000</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h4 class="text-end me-3">Total: $5000</h4>
+            </div>
+            <div>
+                <div class="mt-4">
+                    <h5>Enter coupon</h5>
+                    <div class="input-group">
+                        <input class="form-control" id="" type="text" placeholder="Coupon">
+                        <button class="input-group-text" id="basic-addon1">
+                            Add
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button class="btn btn-success mt-4 btn-max-width">Place Order</button>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>        
+
+<app-footer></app-footer>

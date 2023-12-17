@@ -1,0 +1,10 @@
+.nav-item .nav-link.active {
+    background-color: black;
+    color: white !important;
+    font-size: large;
+}
+
+.nav-item .nav-link {
+    border-radius: 10px;
+    padding: 10px;
+}
