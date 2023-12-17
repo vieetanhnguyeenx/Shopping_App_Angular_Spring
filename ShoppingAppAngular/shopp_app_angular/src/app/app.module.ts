@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { OrderComponent } from './order/order.component';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
     HeaderComponent,
     ProductDetailComponent,
     OrderComponent,
-    OrderConfirmComponent
+    OrderConfirmComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule
@@ -25,7 +27,9 @@ import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
     //HomeComponent
     //ProductDetailComponent
     //OrderComponent
-    OrderConfirmComponent
+    //OrderConfirmComponent
+    LoginComponent
+
   ]
 })
 export class AppModule { }
