@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 public class CategoryController {
     //Get all categories
     @GetMapping
-    public ResponseEntity<String> getAllCategories() {
-        return ResponseEntity.ok("Hello world!");
+    public ResponseEntity<String> getAllCategories(
+            @RequestParam("page") int page,
+            @RequestParam("limit") int limit
+    ) {
+        return ResponseEntity.ok("Hello world! " + page + " " + limit);
     }
 
     @PostMapping
