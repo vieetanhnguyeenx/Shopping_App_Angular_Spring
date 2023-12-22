@@ -1,4 +1,4 @@
-package com.project.shopapp.controller;
+package com.project.shopapp.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
