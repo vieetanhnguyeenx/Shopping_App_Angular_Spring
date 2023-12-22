@@ -1,1 +1,56 @@
-<p>login works!</p>
+<!-- Header-->
+<app-header></app-header>
+
+<div class="container px-4 px-lg-5 mt-5 main">
+    <div>
+        <h2>Login</h2>
+    </div>
+
+    <div class="mx-auto">
+        <div class="login-form">
+          <label for="emailOrPhone" class="form-label">Email\Phone</label>
+          <input type="email" class="form-control input" id="emailOrPhone">
+        </div>
+
+        <div class="login-form mt-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+            <div class="input-group input">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+                <button class="input-group-text " id="basic-addon1">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="mb-3 form-check mt-3">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+
+        <div>
+          <label class="form-check-label" for="exampleCheck1">Role</label>
+          <select class="form-select input" aria-label="Default select example">
+            <option selected disabled>Role</option>
+            <option value="1">User</option>
+            <option value="2">Admin</option>
+          </select>
+        </div>
+
+
+        <div>
+          <button class="btn btn-success mt-5 input">Login</button>
+        </div>
+
+        <div class="divider"></div>
+        <div class="">
+            <h6>Don't have account yet? <a href="#">Signup</a></h6>
+        </div>
+
+    </div>
+
+    <div>
+      
+    </div>
+</div>        
+
+<app-footer></app-footer>

@@ -7,6 +7,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { OrderComponent } from './order/order.component';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LoginComponent } from './login/login.component';
     ProductDetailComponent,
     OrderComponent,
     OrderConfirmComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule
@@ -28,7 +30,8 @@ import { LoginComponent } from './login/login.component';
     //ProductDetailComponent
     //OrderComponent
     //OrderConfirmComponent
-    LoginComponent
+    //LoginComponent
+    SignupComponent
 
   ]
 })
