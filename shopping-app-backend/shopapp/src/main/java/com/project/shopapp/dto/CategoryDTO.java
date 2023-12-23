@@ -1,6 +1,6 @@
-package com.project.shopapp.dtos;
+package com.project.shopapp.dto;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -12,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CategoryDTO {
-    @NotEmpty(message = "Can not be empty")
+    @NotBlank(message = "Can not be empty")
     String name;
 }
