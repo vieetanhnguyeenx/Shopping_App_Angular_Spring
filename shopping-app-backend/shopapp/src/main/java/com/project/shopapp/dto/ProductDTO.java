@@ -18,6 +18,7 @@ import org.hibernate.validator.constraints.Length;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductDTO {
+    
     @NotBlank(message = "Product name is required")
     @Length(min = 3, max = 200, message = "Product name must in range 3 to 200 character")
     String name;
@@ -27,8 +28,8 @@ public class ProductDTO {
     @Max(value = 100000000, message = "Product name must be greater than or equal to 100,000,000")
     Float price;
 
-
     String thumbnail;
+
     String description;
 
     @JsonProperty("category_id")
