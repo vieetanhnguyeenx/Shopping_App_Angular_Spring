@@ -10,6 +10,8 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,7 +40,7 @@ public class ProductDTO {
     @JsonProperty("category_id")
     Integer categoryId;
 
-    MultipartFile file;
+    List<MultipartFile> files;
 
 
     public void setCategory_id(@NotNull(message = "Product category is required") Integer id) {

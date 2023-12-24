@@ -53,10 +53,9 @@ public class ProductController {
 
         }
 
-        MultipartFile file = productDTO.getFile();
-
-        if (file != null) {
-            // Check file size (<10MB) 
+        List<MultipartFile> files = productDTO.getFiles();
+        for (MultipartFile file : files) {
+            // Check file size (<10MB)
             if (file.getSize() > 10 * 1024 * 1024) {
                 // TODO: throw exception to global
                 //throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE, "File is too large! Maximum size is 10MB");
@@ -74,12 +73,13 @@ public class ProductController {
             // TODO: throw exception to global
             try {
                 String fileName = FileUtil.storeFile(file);
+                // TODO: save file to DB product_images
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body("Save file failed!");
             }
-
         }
+
 
         return ResponseEntity.ok("Inserted " + productDTO);
     }

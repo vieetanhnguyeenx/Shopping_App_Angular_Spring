@@ -10,13 +10,17 @@ import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
 public class FileUtil {
+
+    private static final String FILE_NAME = "uploads";
+
+
     public static String storeFile(MultipartFile file) throws IOException {
         String originalFileName = StringUtils.cleanPath(file.getOriginalFilename());
         // Add UUID to start of string make file name to be unique name
         String uniqueFileName = UUID.randomUUID().toString() + "_" + originalFileName;
 
         //Declare save file path
-        java.nio.file.Path uploadDir = Paths.get("uploads");
+        java.nio.file.Path uploadDir = Paths.get(FILE_NAME);
 
         // Check if folder dose not exist create new one
         if (!Files.exists(uploadDir))
