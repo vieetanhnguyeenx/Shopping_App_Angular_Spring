@@ -73,7 +73,7 @@ public class ProductController {
             // TODO: throw exception to global
             try {
                 String fileName = FileUtil.storeFile(file);
-                // TODO: save file to DB product_images
+                // TODO: save files name to DB product_images
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body("Save file failed!");
