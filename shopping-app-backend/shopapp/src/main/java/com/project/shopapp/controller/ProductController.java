@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -54,7 +55,12 @@ public class ProductController {
         }
 
         List<MultipartFile> files = productDTO.getFiles();
+        files = files == null ? new ArrayList<MultipartFile>() : files;
+
         for (MultipartFile file : files) {
+            if (file.getSize() == 0)
+                continue;
+
             // Check file size (<10MB)
             if (file.getSize() > 10 * 1024 * 1024) {
                 // TODO: throw exception to global

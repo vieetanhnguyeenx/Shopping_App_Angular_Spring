@@ -23,6 +23,12 @@ public class CategoryController {
         return ResponseEntity.ok("List of category: " + page + " " + limit);
     }
 
+    //Get all categories
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getCategoryById(@PathVariable("id") int id) {
+        return ResponseEntity.ok("Category " + id);
+    }
+
     @PostMapping
     public ResponseEntity<?> createCategory(
             @Valid @RequestBody CategoryDTO categoryDTO,
@@ -32,7 +38,7 @@ public class CategoryController {
                     .stream()
                     .map(fieldError -> fieldError.getField() + " " + fieldError.getDefaultMessage())
                     .toList();
-
+            // TODO: throw exception to global
             return ResponseEntity.badRequest().body(errorMsg);
 
         }
