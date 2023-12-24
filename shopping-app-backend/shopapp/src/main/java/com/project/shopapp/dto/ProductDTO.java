@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ import org.hibernate.validator.constraints.Length;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductDTO {
-    
+
     @NotBlank(message = "Product name is required")
     @Length(min = 3, max = 200, message = "Product name must in range 3 to 200 character")
     String name;
@@ -32,7 +33,15 @@ public class ProductDTO {
 
     String description;
 
-    @JsonProperty("category_id")
+
     @NotNull(message = "Product category is required")
+    @JsonProperty("category_id")
     Integer categoryId;
+
+    MultipartFile file;
+
+
+    public void setCategory_id(@NotNull(message = "Product category is required") Integer id) {
+        this.categoryId = id;
+    }
 }
