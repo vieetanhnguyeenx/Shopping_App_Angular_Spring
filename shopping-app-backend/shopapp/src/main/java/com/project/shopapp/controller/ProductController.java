@@ -1,6 +1,7 @@
 package com.project.shopapp.controller;
 
 import com.project.shopapp.dto.ProductDTO;
+import com.project.shopapp.exception.ApiRequestException;
 import com.project.shopapp.utils.FileUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,13 +47,11 @@ public class ProductController {
         if (result.hasErrors()) {
             List<String> errorMsg = result.getFieldErrors()
                     .stream()
-                    .map(fieldError -> fieldError.getField() + " " + fieldError.getDefaultMessage())
+                    .map(FieldError::getDefaultMessage)
                     .toList();
 
             // TODO: throw exception to global
-            return ResponseEntity.badRequest()
-                    .body(errorMsg);
-
+            throw ApiRequestException.badRequest(errorMsg);
         }
 
         List<MultipartFile> files = productDTO.getFiles();

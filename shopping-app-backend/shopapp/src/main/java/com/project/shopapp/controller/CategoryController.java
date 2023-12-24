@@ -1,10 +1,12 @@
 package com.project.shopapp.controller;
 
 import com.project.shopapp.dto.CategoryDTO;
+import com.project.shopapp.exception.ApiRequestException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,11 +38,11 @@ public class CategoryController {
         if (result.hasErrors()) {
             List<String> errorMsg = result.getFieldErrors()
                     .stream()
-                    .map(fieldError -> fieldError.getField() + " " + fieldError.getDefaultMessage())
+                    .map(FieldError::getDefaultMessage)
                     .toList();
-            // TODO: throw exception to global
-            return ResponseEntity.badRequest().body(errorMsg);
 
+            // TODO: throw exception to global
+            throw ApiRequestException.badRequest(errorMsg);
         }
         return ResponseEntity.ok("Inserted " + categoryDTO.getName());
     }
