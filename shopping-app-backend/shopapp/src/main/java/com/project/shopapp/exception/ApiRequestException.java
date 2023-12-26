@@ -25,7 +25,7 @@ public class ApiRequestException extends RuntimeException {
                 .exception(ApiException.builder()
                         .timestamp(ZonedDateTime.now(ZoneId.of("UTC")))
                         .status(HttpStatus.BAD_REQUEST)
-                        .error(message)
+                        .errors(message)
                         .path("")
                         .build())
                 .build();

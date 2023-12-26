@@ -19,7 +19,7 @@ public class ApiException {
 
     ZonedDateTime timestamp;
     HttpStatus status;
-    List<String> error;
+    List<String> errors;
     String path;
 
 }

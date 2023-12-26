@@ -8,3 +8,6 @@ spring:
       max-request-size: 15MB
 
 fileName: uploads
+
+api:
+  prefix: api/v1

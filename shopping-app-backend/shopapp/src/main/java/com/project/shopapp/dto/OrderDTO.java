@@ -1,6 +1,7 @@
 package com.project.shopapp.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,12 +18,14 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderDTO {
     @JsonProperty("user_id")
+    @NotNull(message = "User ID is required")
     @Min(value = 1, message = "User's ID must be greater than 0")
     Long userId;
 
     @JsonProperty("fullname")
     String fullName;
 
+    @Email(message = "Email must be abc@xyz.cdf")
     String email;
 
     @JsonProperty("phone_number")
