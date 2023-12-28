@@ -31,4 +31,15 @@ public class ApiRequestException extends RuntimeException {
                 .build();
     }
 
+    public static ApiRequestException notFound(List<String> message) {
+        return ApiRequestException.builder()
+                .httpStatus(HttpStatus.NOT_FOUND)
+                .exception(ApiException.builder()
+                        .timestamp(ZonedDateTime.now(ZoneId.of("UTC")))
+                        .status(HttpStatus.NOT_FOUND)
+                        .errors(message)
+                        .path("")
+                        .build())
+                .build();
+    }
 }

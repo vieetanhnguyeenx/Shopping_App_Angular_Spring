@@ -1,19 +1,20 @@
 package com.project.shopapp.service;
 
-import com.project.shopapp.entity.Category;
+import com.project.shopapp.dto.request.CategoryDTORequest;
+import com.project.shopapp.dto.response.CategoryDTOResponse;
 
 import java.util.List;
 
 public interface ICategoryService {
-    Category createCategory(Category category);
+    CategoryDTOResponse createCategory(CategoryDTORequest categoryDTORequest);
 
-    Category getCategoryById(long id);
+    CategoryDTOResponse getCategoryById(long id);
 
-    List<Category> getAllCategories();
+    List<CategoryDTOResponse> getAllCategories();
 
-    Category updateCategory(long id, Category category);
+    CategoryDTOResponse updateCategory(long id, CategoryDTORequest categoryDTORequest);
 
-    Category deleteCategory(long id);
+    CategoryDTOResponse deleteCategory(long id);
 
 
 }
