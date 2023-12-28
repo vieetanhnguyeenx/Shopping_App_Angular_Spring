@@ -4,6 +4,7 @@ import com.project.shopapp.common.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,9 +15,8 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Order {
+public class Order extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,9 +27,11 @@ public class Order {
     User user;
 
     @Column(name = "fullname", length = 100)
+    @ColumnDefault("''")
     String fullName;
 
     @Column(name = "email", length = 100)
+    @ColumnDefault("''")
     String email;
 
     @Column(name = "phone_number", nullable = false, length = 20)
@@ -39,12 +41,13 @@ public class Order {
     String address;
 
     @Column(name = "note", length = 100)
+    @ColumnDefault("''")
     String note;
 
-    @Column(name = "order_date")
+    @Column(name = "order_date", insertable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     LocalDateTime orderDate;
 
-    @Enumerated(EnumType.ORDINAL)
     OrderStatus status;
 
     @Column(name = "total_money")
@@ -66,5 +69,6 @@ public class Order {
     String paymentMethod;
 
     @Column(name = "active")
+    @ColumnDefault("1")
     Boolean active;
 }
