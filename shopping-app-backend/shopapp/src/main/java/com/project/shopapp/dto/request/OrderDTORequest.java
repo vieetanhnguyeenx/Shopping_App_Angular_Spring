@@ -1,4 +1,4 @@
-package com.project.shopapp.dto;
+package com.project.shopapp.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
@@ -16,7 +16,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class OrderDTO {
+public class OrderDTORequest {
     @JsonProperty("user_id")
     @NotNull(message = "User ID is required")
     @Min(value = 1, message = "User's ID must be greater than 0")

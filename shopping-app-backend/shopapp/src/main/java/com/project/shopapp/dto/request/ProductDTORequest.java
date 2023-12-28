@@ -1,4 +1,4 @@
-package com.project.shopapp.dto;
+package com.project.shopapp.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Max;
@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ProductDTO {
+public class ProductDTORequest {
 
     @NotBlank(message = "Product name is required")
     @Length(min = 3, max = 200, message = "Product name must in range 3 to 200 character")

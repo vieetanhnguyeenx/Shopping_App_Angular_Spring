@@ -1,6 +1,6 @@
 package com.project.shopapp.controller;
 
-import com.project.shopapp.dto.CategoryDTO;
+import com.project.shopapp.dto.request.CategoryDTORequest;
 import com.project.shopapp.exception.ApiRequestException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<?> createCategory(
-            @Valid @RequestBody CategoryDTO categoryDTO,
+            @Valid @RequestBody CategoryDTORequest categoryDTORequest,
             BindingResult result) {
         if (result.hasErrors()) {
             List<String> errorMsg = result.getFieldErrors()
@@ -44,7 +44,7 @@ public class CategoryController {
             // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
-        return ResponseEntity.ok("Inserted " + categoryDTO.getName());
+        return ResponseEntity.ok("Inserted " + categoryDTORequest.getName());
     }
 
     @PutMapping("/{id}")

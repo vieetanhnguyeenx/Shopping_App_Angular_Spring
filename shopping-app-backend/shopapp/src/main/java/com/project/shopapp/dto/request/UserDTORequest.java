@@ -1,4 +1,4 @@
-package com.project.shopapp.dto;
+package com.project.shopapp.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserDTO {
+public class UserDTORequest {
     @JsonProperty("fullname")
     @NotBlank(message = "Full name is required")
     String fullName;

@@ -1,6 +1,6 @@
 package com.project.shopapp.controller;
 
-import com.project.shopapp.dto.ProductDTO;
+import com.project.shopapp.dto.request.ProductDTORequest;
 import com.project.shopapp.exception.ApiRequestException;
 import com.project.shopapp.utils.FileUtil;
 import jakarta.validation.Valid;
@@ -40,7 +40,7 @@ public class ProductController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createProduct(
-            @Valid @RequestBody @ModelAttribute ProductDTO productDTO,
+            @Valid @RequestBody @ModelAttribute ProductDTORequest productDTORequest,
             //@RequestPart("file") MultipartFile file,
             BindingResult result) {
 
@@ -54,7 +54,7 @@ public class ProductController {
             throw ApiRequestException.badRequest(errorMsg);
         }
 
-        List<MultipartFile> files = productDTO.getFiles();
+        List<MultipartFile> files = productDTORequest.getFiles();
         files = files == null ? new ArrayList<MultipartFile>() : files;
 
         for (MultipartFile file : files) {
@@ -87,7 +87,7 @@ public class ProductController {
         }
 
 
-        return ResponseEntity.ok("Inserted " + productDTO);
+        return ResponseEntity.ok("Inserted " + productDTORequest);
     }
 
 

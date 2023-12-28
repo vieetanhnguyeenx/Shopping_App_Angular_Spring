@@ -1,7 +1,7 @@
 package com.project.shopapp.controller;
 
-import com.project.shopapp.dto.UserDTO;
-import com.project.shopapp.dto.UserLoginDTO;
+import com.project.shopapp.dto.request.UserDTORequest;
+import com.project.shopapp.dto.request.UserLoginDTORequest;
 import com.project.shopapp.exception.ApiRequestException;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> createUser(
-            @Valid @RequestBody UserDTO userDTO,
+            @Valid @RequestBody UserDTORequest userDTORequest,
             BindingResult result
     ) {
         if (result.hasErrors()) {
@@ -35,7 +35,7 @@ public class UserController {
 
         }
 
-        if (!userDTO.getPassword().equals(userDTO.getRetypePassword()))
+        if (!userDTORequest.getPassword().equals(userDTORequest.getRetypePassword()))
             return ResponseEntity.badRequest()
                     .body("Password dose not match!");
 
@@ -44,7 +44,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(
-            @Valid @RequestBody UserLoginDTO userLoginDTO,
+            @Valid @RequestBody UserLoginDTORequest userLoginDTORequest,
             BindingResult result
     ) {
         if (result.hasErrors()) {

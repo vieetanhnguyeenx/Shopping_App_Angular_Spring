@@ -1,4 +1,4 @@
-package com.project.shopapp.dto;
+package com.project.shopapp.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserLoginDTO {
+public class UserLoginDTORequest {
     @JsonProperty("phone_number")
     @NotBlank(message = "Phone number is required")
     String phoneNumber;

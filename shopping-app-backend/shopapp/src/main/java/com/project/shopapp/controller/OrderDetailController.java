@@ -1,6 +1,6 @@
 package com.project.shopapp.controller;
 
-import com.project.shopapp.dto.OrderDetailDTO;
+import com.project.shopapp.dto.request.OrderDetailDTORequest;
 import com.project.shopapp.exception.ApiRequestException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class OrderDetailController {
 
     @PostMapping
     public ResponseEntity<?> createOrderDetail(
-            @Valid @RequestBody OrderDetailDTO orderDetailDTO,
+            @Valid @RequestBody OrderDetailDTORequest orderDetailDTORequest,
             BindingResult result
     ) {
         if (result.hasErrors()) {
@@ -30,7 +30,7 @@ public class OrderDetailController {
             // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
-        return ResponseEntity.ok("Create order detail " + orderDetailDTO);
+        return ResponseEntity.ok("Create order detail " + orderDetailDTORequest);
     }
 
     @GetMapping("/{id}")
@@ -50,7 +50,7 @@ public class OrderDetailController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateOrderDetail(
             @Valid @PathVariable("id") Long id,
-            @Valid @RequestBody OrderDetailDTO newOrderDetailData,
+            @Valid @RequestBody OrderDetailDTORequest newOrderDetailData,
             BindingResult result
     ) {
         if (result.hasErrors()) {
