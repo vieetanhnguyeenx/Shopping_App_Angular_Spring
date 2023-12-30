@@ -1,6 +1,5 @@
 package com.project.shopapp.dto.response;
 
-import com.project.shopapp.entity.Category;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,5 +17,5 @@ public class ProductDTOResponse {
     Float price;
     String thumbnail;
     String description;
-    Category category;
+    CategoryDTOResponse category;
 }

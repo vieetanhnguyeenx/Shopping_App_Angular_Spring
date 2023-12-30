@@ -38,12 +38,12 @@ public class ProductDTORequest {
 
     @NotNull(message = "Product category is required")
     @JsonProperty("category_id")
-    Integer categoryId;
+    Long categoryId;
 
     List<MultipartFile> files;
 
 
-    public void setCategory_id(@NotNull(message = "Product category is required") Integer id) {
+    public void setCategory_id(@NotNull(message = "Product category is required") Long id) {
         this.categoryId = id;
     }
 }
