@@ -27,11 +27,14 @@ public class UserService implements IUserService {
     public UserDTOResponse createUser(UserDTORequest userDTORequest) {
         validateUserDTORequest(userDTORequest);
         User user = mapper.map(userDTORequest, User.class);
-        
+
+        //TODO: spring security config
+        return null;
     }
 
     @Override
     public UserLoginDTOResponse login(UserLoginDTORequest userLoginDTORequest) {
+        //TODO: spring security config
         return null;
     }
 
