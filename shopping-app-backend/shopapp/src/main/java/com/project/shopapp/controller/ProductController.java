@@ -1,10 +1,14 @@
 package com.project.shopapp.controller;
 
 import com.project.shopapp.dto.request.ProductDTORequest;
+import com.project.shopapp.dto.response.ProductDTOResponse;
 import com.project.shopapp.exception.ApiRequestException;
+import com.project.shopapp.service.IProductService;
 import com.project.shopapp.utils.FileUtil;
 import jakarta.validation.Valid;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +23,10 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.prefix}/products")
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductController {
+    IProductService productService;
+
     @GetMapping
     public ResponseEntity<String> getProducts(
             @RequestParam("page") int page,
@@ -29,13 +36,13 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getProductById(@PathVariable("id") String productId) {
-        return ResponseEntity.ok("Product with ID: " + productId);
+    public ProductDTOResponse getProductById(@PathVariable("id") long productId) {
+        return productService.getProductById(productId);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable long id) {
-        return ResponseEntity.status(HttpStatus.OK).body("Deleted product with id: " + id);
+    public ProductDTOResponse deleteProduct(@PathVariable long id) {
+        return productService.deleteProduct(id);
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -87,7 +94,7 @@ public class ProductController {
         }
 
 
-        return ResponseEntity.ok("Inserted " + productDTORequest);
+        return ResponseEntity.ok(productService.createProduct(productDTORequest));
     }
 
 

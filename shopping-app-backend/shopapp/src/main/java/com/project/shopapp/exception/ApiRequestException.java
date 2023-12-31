@@ -42,4 +42,16 @@ public class ApiRequestException extends RuntimeException {
                         .build())
                 .build();
     }
+
+    public static ApiRequestException exception(List<String> message, HttpStatus status) {
+        return ApiRequestException.builder()
+                .httpStatus(status)
+                .exception(ApiException.builder()
+                        .timestamp(ZonedDateTime.now(ZoneId.of("UTC")))
+                        .status(status)
+                        .errors(message)
+                        .path("")
+                        .build())
+                .build();
+    }
 }

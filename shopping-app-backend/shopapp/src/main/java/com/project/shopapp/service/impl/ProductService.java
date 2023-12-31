@@ -70,12 +70,18 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductDTOResponse deleteProduct(long id) {
-        return null;
+        Product product = productRepository
+                .findById(id)
+                .orElseThrow(() -> ApiRequestException
+                        .notFound(List.of("Product with id " + id + "dose not exist")));
+
+        productRepository.delete(product);
+        return ProductMapper.toProductDTOResponse(product);
     }
 
     @Override
     public boolean existsByName(String name) {
-        return false;
+        return productRepository.existsByName(name);
     }
 
     private Category getCategoryById(long id) {
