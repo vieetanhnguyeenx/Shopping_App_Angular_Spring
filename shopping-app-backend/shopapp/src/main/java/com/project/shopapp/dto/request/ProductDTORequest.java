@@ -8,9 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -31,6 +28,7 @@ public class ProductDTORequest {
     @Max(value = 100000000, message = "Product name must be greater than or equal to 100,000,000")
     Float price;
 
+    @NotNull(message = "Product thumbnail is required")
     String thumbnail;
 
     String description;
@@ -39,8 +37,6 @@ public class ProductDTORequest {
     @NotNull(message = "Product category is required")
     @JsonProperty("category_id")
     Long categoryId;
-
-    List<MultipartFile> files;
 
 
     public void setCategory_id(@NotNull(message = "Product category is required") Long id) {
