@@ -27,8 +27,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductImageController {
+    static final long MAXIMUM_SIZE_PER_FILE = 10 * 1024 * 1024;
+    static final String FILE_CONTENT_TYPE_START = "image/";
+    static final int MAXIMUM_FILE = 5;
 
     IProductImageService productImageService;
+
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> uploadImages(
@@ -46,20 +50,24 @@ public class ProductImageController {
 
         List<MultipartFile> files = productImageDTORequest.getFiles();
         files = files == null ? new ArrayList<MultipartFile>() : files;
+        if (files.size() > MAXIMUM_FILE)
+            throw ApiRequestException.exception(List.of("Maximum file is " + MAXIMUM_FILE),
+                    HttpStatus.BAD_REQUEST);
+
         List<String> images = new ArrayList<>();
         for (MultipartFile file : files) {
             if (file.getSize() == 0)
                 continue;
 
             // Check file size (<10MB)
-            if (file.getSize() > 10 * 1024 * 1024) {
+            if (file.getSize() > MAXIMUM_SIZE_PER_FILE) {
                 //throw new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE, "File is too large! Maximum size is 10MB");
-                throw ApiRequestException.exception(List.of("File is too large! Maximum size is 10MB"),
+                throw ApiRequestException.exception(List.of("File is too large! Maximum size is " + MAXIMUM_SIZE_PER_FILE + " MB"),
                         HttpStatus.PAYLOAD_TOO_LARGE);
             }
 
-            //Check file type
-            if (file.getContentType() == null || !file.getContentType().startsWith("image/"))
+            //Check file type if (file.getContentType() == null || !file.getContentType().startsWith("image/"))
+            if (file.getContentType() == null || !file.getContentType().startsWith(FILE_CONTENT_TYPE_START))
                 throw ApiRequestException.exception(List.of("File must be an image!"),
                         HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 
