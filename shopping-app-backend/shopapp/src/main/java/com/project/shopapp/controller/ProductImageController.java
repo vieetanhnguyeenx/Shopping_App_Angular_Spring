@@ -41,7 +41,6 @@ public class ProductImageController {
                     .map(FieldError::getDefaultMessage)
                     .toList();
 
-            // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
 

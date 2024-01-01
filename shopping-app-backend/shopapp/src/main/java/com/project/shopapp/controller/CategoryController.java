@@ -45,7 +45,6 @@ public class CategoryController {
                     .map(FieldError::getDefaultMessage)
                     .toList();
 
-            // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
         return categoryService.createCategory(categoryDTORequest);
@@ -64,7 +63,6 @@ public class CategoryController {
                     .map(FieldError::getDefaultMessage)
                     .toList();
 
-            // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
 

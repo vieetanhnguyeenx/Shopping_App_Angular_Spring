@@ -27,7 +27,6 @@ public class OrderController {
                     .map(FieldError::getDefaultMessage)
                     .toList();
 
-            // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
         return ResponseEntity.ok("Create order " + orderDTORequest);
@@ -50,7 +49,6 @@ public class OrderController {
                     .map(FieldError::getDefaultMessage)
                     .toList();
 
-            // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
 

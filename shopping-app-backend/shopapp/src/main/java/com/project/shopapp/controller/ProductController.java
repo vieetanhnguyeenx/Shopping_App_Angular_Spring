@@ -51,7 +51,6 @@ public class ProductController {
                     .map(FieldError::getDefaultMessage)
                     .toList();
 
-            // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
 
@@ -70,7 +69,6 @@ public class ProductController {
                     .map(FieldError::getDefaultMessage)
                     .toList();
 
-            // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
 

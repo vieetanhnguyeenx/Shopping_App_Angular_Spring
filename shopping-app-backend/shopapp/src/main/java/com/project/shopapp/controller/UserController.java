@@ -4,6 +4,7 @@ import com.project.shopapp.dto.request.UserDTORequest;
 import com.project.shopapp.dto.request.UserLoginDTORequest;
 import com.project.shopapp.exception.ApiRequestException;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -29,15 +30,12 @@ public class UserController {
                     .map(fieldError -> fieldError.getField() + " " + fieldError.getDefaultMessage())
                     .toList();
 
-            // TODO: throw exception to global
-            return ResponseEntity.badRequest()
-                    .body(errorMsg);
-
+            throw ApiRequestException.badRequest(errorMsg);
         }
 
         if (!userDTORequest.getPassword().equals(userDTORequest.getRetypePassword()))
-            return ResponseEntity.badRequest()
-                    .body("Password dose not match!");
+            throw ApiRequestException.exception(List.of("Password dose not match!"),
+                    HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok("Register successful");
     }

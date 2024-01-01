@@ -59,7 +59,6 @@ public class OrderDetailController {
                     .map(FieldError::getDefaultMessage)
                     .toList();
 
-            // TODO: throw exception to global
             throw ApiRequestException.badRequest(errorMsg);
         }
         return ResponseEntity.ok("Updated order detail " + newOrderDetailData);
