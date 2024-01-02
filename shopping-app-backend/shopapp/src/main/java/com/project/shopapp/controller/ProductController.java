@@ -41,12 +41,12 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ProductDTOResponse getProductById(@PathVariable("id") long productId) {
+    public ProductDTOResponse getProductById(@PathVariable("id") Long productId) {
         return productService.getProductById(productId);
     }
 
     @DeleteMapping("/{id}")
-    public ProductDTOResponse deleteProduct(@PathVariable("id") long productId) {
+    public ProductDTOResponse deleteProduct(@PathVariable("id") Long productId) {
         return productService.deleteProduct(productId);
     }
 

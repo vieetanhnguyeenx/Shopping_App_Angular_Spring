@@ -43,11 +43,14 @@ public class OrderDTORequest {
     Float totalMoney;
 
     @JsonProperty("shipping_method")
+    @NotBlank(message = "Shipping Method is required")
     String shippingMethod;
 
     @JsonProperty("shipping_address")
+    @NotBlank(message = "Shipping Address is required")
     String shippingAddress;
 
     @JsonProperty("payment_method")
+    @NotBlank(message = "Payment Method is required")
     String paymentMethod;
 }

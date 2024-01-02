@@ -60,10 +60,10 @@ public class Order extends BaseEntity {
     String shippingAddress;
 
     @Column(name = "shipping_date")
-    LocalDate shippingDate;
+    LocalDate shippingDate;//
 
     @Column(name = "tracking_number", length = 100)
-    String trackingNumber;
+    String trackingNumber;//
 
     @Column(name = "payment_method", length = 100)
     String paymentMethod;
