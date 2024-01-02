@@ -2,6 +2,7 @@ package com.project.shopapp.controller;
 
 import com.github.javafaker.Faker;
 import com.project.shopapp.dto.request.ProductDTORequest;
+import com.project.shopapp.dto.response.PageProductDTOResponse;
 import com.project.shopapp.dto.response.ProductDTOResponse;
 import com.project.shopapp.exception.ApiRequestException;
 import com.project.shopapp.service.IProductService;
@@ -26,14 +27,17 @@ public class ProductController {
     IProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<ProductDTOResponse>> getProducts(
+    public ResponseEntity<PageProductDTOResponse> getProducts(
             @RequestParam("page") int page,
             @RequestParam("limit") int limit
     ) {
         PageRequest pageRequest = PageRequest.of(page, limit);
         Page<ProductDTOResponse> responses = productService.getAllProduct(pageRequest);
 
-        return ResponseEntity.ok(responses.getContent());
+        return ResponseEntity.ok(PageProductDTOResponse.builder()
+                .products(responses.getContent())
+                .totalPages(responses.getTotalPages())
+                .build());
     }
 
     @GetMapping("/{id}")
