@@ -22,9 +22,6 @@ spring:
       max-file-size: 10MB
       max-request-size: 15MB
 
-files:
-  destination: uploads
-  maximun-file: 5
 
 api:
   prefix: api/v1

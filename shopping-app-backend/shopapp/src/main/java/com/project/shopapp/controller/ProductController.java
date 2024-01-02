@@ -1,5 +1,6 @@
 package com.project.shopapp.controller;
 
+import com.github.javafaker.Faker;
 import com.project.shopapp.dto.request.ProductDTORequest;
 import com.project.shopapp.dto.response.ProductDTOResponse;
 import com.project.shopapp.exception.ApiRequestException;
@@ -8,6 +9,8 @@ import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -23,11 +26,14 @@ public class ProductController {
     IProductService productService;
 
     @GetMapping
-    public ResponseEntity<String> getProducts(
+    public ResponseEntity<List<ProductDTOResponse>> getProducts(
             @RequestParam("page") int page,
             @RequestParam("limit") int limit
     ) {
-        return ResponseEntity.ok("Get products " + page + " " + limit);
+        PageRequest pageRequest = PageRequest.of(page, limit);
+        Page<ProductDTOResponse> responses = productService.getAllProduct(pageRequest);
+
+        return ResponseEntity.ok(responses.getContent());
     }
 
     @GetMapping("/{id}")
@@ -73,5 +79,24 @@ public class ProductController {
         }
 
         return ResponseEntity.ok(productService.updateProduct(id, productDTORequest));
+    }
+
+    @PostMapping("/generateFakeProducts")
+    public ResponseEntity<String> generateFakeProducts() {
+        Faker faker = new Faker();
+        for (int i = 0; i < 5000; i++) {
+            String productName = faker.commerce().productName();
+            if (productService.existsByName(productName))
+                continue;
+            ProductDTORequest productDTORequest = ProductDTORequest.builder()
+                    .name(productName)
+                    .price((float) faker.number().randomDouble(2, 1000, 100000000))
+                    .description(faker.lorem().sentence())
+                    .thumbnail("")
+                    .categoryId(faker.number().numberBetween(Long.valueOf(3), Long.valueOf(6)))
+                    .build();
+            productService.createProduct(productDTORequest);
+        }
+        return ResponseEntity.ok("Fake products");
     }
 }

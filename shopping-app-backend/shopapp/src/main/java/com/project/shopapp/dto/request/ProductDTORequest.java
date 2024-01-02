@@ -28,7 +28,6 @@ public class ProductDTORequest {
     @Max(value = 100000000, message = "Product name must be greater than or equal to 100,000,000")
     Float price;
 
-    @NotNull(message = "Product thumbnail is required")
     String thumbnail;
 
     String description;
