@@ -88,6 +88,6 @@ public class ProductService implements IProductService {
         return categoryRepository
                 .findById(id)
                 .orElseThrow(() -> ApiRequestException
-                        .notFound(List.of("Category with id " + id + "dose not exist")));
+                        .notFound(List.of("Category with id " + id + " dose not exist")));
     }
 }

@@ -14,6 +14,6 @@ public interface IOrderService {
 
     void deleteOrder(Long id);
 
-    List<OrderDTOResponse> getAllOrder(Long userId);
+    List<OrderDTOResponse> getAllOrderByUserId(Long userId);
 
 }

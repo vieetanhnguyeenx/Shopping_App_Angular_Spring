@@ -1,6 +1,5 @@
 package com.project.shopapp.service.impl;
 
-import com.project.shopapp.common.OrderStatus;
 import com.project.shopapp.dto.request.OrderDTORequest;
 import com.project.shopapp.dto.response.OrderDTOResponse;
 import com.project.shopapp.entity.Order;
@@ -33,46 +32,56 @@ public class OrderService implements IOrderService {
 
         Order order = mapper.map(orderDTORequest, Order.class);
         order.setUser(user);
-        order.setTrackingNumber("");
-        order.setStatus(OrderStatus.PENDING);
-
         order = orderRepository.save(order);
         return OrderMapper.toOrderDTOResponse(order);
     }
 
     @Override
     public OrderDTOResponse getOrder(Long id) {
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> ApiRequestException
-                        .notFound(List.of("Order with id " + id + "dose not exist")));
-
+        Order order = getOrderById(id);
         return OrderMapper.toOrderDTOResponse(order);
     }
+
 
     @Override
     public OrderDTOResponse updateOrder(Long id, OrderDTORequest orderDTORequest) {
         if (!orderRepository.existsById(id))
             throw ApiRequestException.notFound(List.of("Order with id " + id + "dose not exist"));
 
-        //TODO:
-        return null;
-
+        User user = getUserById(orderDTORequest.getUserId());
+        Order order = mapper.map(orderDTORequest, Order.class);
+        order.setUser(user);
+        order.setId(id);
+        return OrderMapper.toOrderDTOResponse(orderRepository.save(order));
     }
 
     @Override
     public void deleteOrder(Long id) {
-
+        Order order = getOrderById(id);
+        order.setActive(false);
+        orderRepository.save(order);
     }
 
     @Override
-    public List<OrderDTOResponse> getAllOrder(Long userId) {
-        return null;
+    public List<OrderDTOResponse> getAllOrderByUserId(Long userId) {
+        User user = getUserById(userId);
+
+        return orderRepository.findAllByUser(user)
+                .stream()
+                .map(OrderMapper::toOrderDTOResponse)
+                .toList();
     }
 
     private User getUserById(long id) {
         return userRepository
                 .findById(id)
                 .orElseThrow(() -> ApiRequestException
-                        .notFound(List.of("User with id " + id + "dose not exist")));
+                        .notFound(List.of("User with id " + id + " dose not exist")));
+    }
+
+    private Order getOrderById(long id) {
+        return orderRepository.findById(id)
+                .orElseThrow(() -> ApiRequestException
+                        .notFound(List.of("Order with id " + id + "dose not exist")));
     }
 }

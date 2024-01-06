@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,6 +18,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@EntityListeners(AuditingEntityListener.class)
+@Builder
 public class Order extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,47 +32,49 @@ public class Order extends BaseEntity {
 
     @Column(name = "fullname", length = 100)
     @ColumnDefault("''")
-    String fullName;
+    String fullName = "";
 
     @Column(name = "email", length = 100)
     @ColumnDefault("''")
-    String email;
+    String email = "";
 
     @Column(name = "phone_number", nullable = false, length = 20)
-    String phoneNumber;
+    String phoneNumber = "";
 
     @Column(name = "address", nullable = false, length = 200)
-    String address;
+    String address = "";
 
     @Column(name = "note", length = 100)
     @ColumnDefault("''")
-    String note;
+    String note = "";
 
-    @Column(name = "order_date", insertable = false, updatable = false)
+    @Column(name = "order_date", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    LocalDateTime orderDate;
+    @CreatedDate
+    LocalDateTime orderDate = LocalDateTime.now();
 
-    OrderStatus status;
+    OrderStatus status = OrderStatus.PENDING;
 
     @Column(name = "total_money")
     Float totalMoney;
 
     @Column(name = "shipping_method", length = 100)
-    String shippingMethod;
+    String shippingMethod = "";
 
     @Column(name = "shipping_address", length = 200)
-    String shippingAddress;
+    String shippingAddress = "";
 
     @Column(name = "shipping_date")
-    LocalDate shippingDate;//
+    LocalDate shippingDate = LocalDate.now().plusDays(15);//
 
     @Column(name = "tracking_number", length = 100)
-    String trackingNumber;//
+    String trackingNumber = "";//
 
     @Column(name = "payment_method", length = 100)
-    String paymentMethod;
+    String paymentMethod = "";
 
     @Column(name = "active")
     @ColumnDefault("1")
-    Boolean active;
+    Boolean active = true;
+
 }

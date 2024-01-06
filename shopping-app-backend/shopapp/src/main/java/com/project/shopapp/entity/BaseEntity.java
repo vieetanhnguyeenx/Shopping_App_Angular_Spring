@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @MappedSuperclass
+
 public class BaseEntity {
 
     @Column(name = "created_at")

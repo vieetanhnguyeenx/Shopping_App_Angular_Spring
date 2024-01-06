@@ -35,7 +35,7 @@ public class OrderDTORequest {
     @NotBlank(message = "Address is required")
     String address;
 
-    String note;
+    String note = "";
 
     @JsonProperty("total_money")
     @NotNull(message = "Total money is required")
